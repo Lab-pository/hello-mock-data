@@ -5,15 +5,22 @@ spring:
     properties:
       hibernate:
         jdbc:
-          batch_size: 100
+          batch_size: 20000
+          batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mock_test?rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/mock_test?useSSL=false
     username: user
     password: password
     hikari:
-      maximum-pool-size: 100
+      maximum-pool-size: 5
+      data-source-properties:
+        rewriteBatchedStatements: true
+
   sql:
     init:
       schema-locations: classpath*:schema.sql
